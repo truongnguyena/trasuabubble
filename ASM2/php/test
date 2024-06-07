@@ -1,0 +1,67 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $quantity1 = intval($_POST["quantity1"]);
+    $quantity2 = intval($_POST["quantity2"]);
+    $price1 = 32000;
+    $price2 = 36000;
+
+    $total = ($quantity1 * $price1) + ($quantity2 * $price2);
+}
+?>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - Quán Trà Sữa</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="logo">Quán Trà Sữa</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+                <li><a href="cart.html">Giỏ Hàng</a></li>
+                <li><a href="login.html">Đăng Nhập/Đăng Ký</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="cart">
+            <h2>Giỏ Hàng</h2>
+            <form action="update_cart.php" method="post">
+                <div class="cart-item">
+                    <img src="product1.jpg" alt="Trà Sữa 1">
+                    <h3>Trà Sữa 1</h3>
+                    <p>Giá: 32,000 VND</p>
+                    <label for="quantity1">Số lượng:</label>
+                    <input type="number" id="quantity1" name="quantity1" value="<?php echo $quantity1; ?>" min="1" required>
+                    <button type="submit">Cập Nhật</button>
+                    <button type="submit" formaction="remove_item.php" formmethod="post">Xóa</button>
+                </div>
+                <div class="cart-item">
+                    <img src="product2.jpg" alt="Trà Sữa 2">
+                    <h3>Trà Sữa 2</h3>
+                    <p>Giá: 36,000 VND</p>
+                    <label for="quantity2">Số lượng:</label>
+                    <input type="number" id="quantity2" name="quantity2" value="<?php echo $quantity2; ?>" min="1" required>
+                    <button type="submit">Cập Nhật</button>
+                    <button type="submit" formaction="remove_item.php" formmethod="post">Xóa</button>
+                </div>
+                <div class="cart-total">
+                    <h3>Tổng Cộng: <?php echo number_format($total, 0, ',', '.'); ?> VND</h3>
+                    <button type="submit" formaction="checkout.php" formmethod="post">Thanh Toán</button>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Nguyễn Phạm Nhật Trường</p>
+    </footer>
+</body>
+</html>
